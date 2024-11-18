@@ -4,7 +4,7 @@ Individual projects made during the Information Retrieval & Text Mining course t
 
 ## Information Retrieval System
 
-The main idea of the project was to develop, in the programming language of our choice, an indexer as well as a searcher, for Romanian texts written in different file formats (.txt, .pdf, .doc, .docx), and use them in order to query the indexed documents. 
+The main idea of the project was to develop, in the programming language of our choice, an indexer as well as a searcher, for Romanian texts written in different file formats (.txt, .pdf, .doc, .docx), and use them in order to query the indexed documents.
 
 #### The Indexer
 
@@ -16,12 +16,16 @@ For the implementation of the searcher, I created a custom analyzer that utilize
 
 #### Other Details
 
-Between multiple runs of the application, indexed files are saved and loaded to and from a local directory managed automatically by the program, while the program also assures that the same file isn't indexed twice by keeping track of a serialized file containing the absolute path of each indexed file.
+Between multiple runs of the application, indexed files are saved and loaded to and from a local directory managed automatically by the program.
+
+The program assures that if the same file (each file is identified by their absolute path) is attempted to be indexed twice, only the current content will be indexed, so as not to have multiple versions of the same file indexed.
+
+The searcher returns only the top 5 documents containing the queried information, in descending order of the number of apparitions.
 
 #### How to Run the Application
 
 ```
 mvn package
 java -jar target/docsearch-1.0-SNAPSHOT.jar -index -directory <path to docs>
-java -jar target/docsearch-1.0-SNAPSHOT.jar -search -directory <path to docs> -query <keyword>
+java -jar target/docsearch-1.0-SNAPSHOT.jar -search -query <keyword>
 ```
